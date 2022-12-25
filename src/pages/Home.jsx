@@ -2,7 +2,7 @@ import { getApiHome } from 'components/helpers/getApi';
 import { MovieItem } from 'components/MovieItem/MovieItem';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 export default function Home() {
   const [movies, setMovies] = useState([]);

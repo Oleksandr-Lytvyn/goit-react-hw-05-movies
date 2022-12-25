@@ -10,10 +10,9 @@ export default function MovieDetails() {
     'https://image.tmdb.org/t/p/w500/wwemzKWzjKYJFfCeiB57q3r4Bcm.png'
   );
   const [isLoading, setIsLoading] = useState(false);
-
-  const location = useLocation();
   const [back, setBack] = useState();
-  // setBack(location.state.from);
+  const location = useLocation();
+
   if (location.state && location.state.from !== back) {
     setBack(location.state.from);
   }

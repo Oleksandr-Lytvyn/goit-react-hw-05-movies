@@ -15,7 +15,7 @@ export default function Movies() {
       setQuery(q);
     }
     fetchBackQuery();
-  }, []);
+  });
 
   useEffect(() => {
     async function fetchQuery() {

@@ -43,6 +43,7 @@ export default function Movies() {
       return alert('no query');
     }
     setQuery(event.target.search.value);
+    setSearchParams({ q: event.target.search.value });
   }
   return (
     <>
@@ -52,9 +53,9 @@ export default function Movies() {
             type="text"
             name="search"
             // value={query}
-            onChange={e => {
-              setSearchParams({ q: e.target.value });
-            }}
+            // onChange={e => {
+            //   setSearchParams({ q: e.target.value });
+            // }}
           />
           <button type="submit">search</button>
         </form>

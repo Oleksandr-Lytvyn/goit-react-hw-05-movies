@@ -36,4 +36,8 @@ export async function getApiReviews(id) {
   return data;
 }
 
+export async function getApiImage(preUrl) {
+  const data = await axios.get(`https://image.tmdb.org/t/p/w500/${preUrl}`);
+  return data;
+}
 // ------CLASS API-------

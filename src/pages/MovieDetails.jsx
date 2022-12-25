@@ -6,9 +6,7 @@ import { useEffect } from 'react';
 export default function MovieDetails() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState([]);
-  const [movieImg, setMovieImg] = useState(
-    'https://image.tmdb.org/t/p/w500/wwemzKWzjKYJFfCeiB57q3r4Bcm.png'
-  );
+  const [movieImg, setMovieImg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [back, setBack] = useState();
   const location = useLocation();
@@ -43,7 +41,14 @@ export default function MovieDetails() {
             </Link>
             {isLoading && <div>.......loading</div>}
             <div className="details-wrap">
-              <img className="details-img" src={movieImg} alt="" />
+              <div className="details-img-box">
+                <img
+                  className="details-img"
+                  style={{ width: '150px' }}
+                  src={movieImg}
+                  alt=""
+                />
+              </div>
               <div className="details-info">
                 <h2>{movie.title}</h2>
                 <p>{movie.overview}</p>

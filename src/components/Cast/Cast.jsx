@@ -31,24 +31,45 @@ export function Cast() {
       {isLoadind && <div>.......loading</div>}
       <div className="container">
         {/* <h2>Cast</h2> */}
-        <ul className="cast-list">
-          {cast.map(actor => {
-            return (
-              <li key={actor.id} className="cast-card">
-                <img
-                  className="cast-img"
-                  src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
-                  alt=""
-                />
-                <div className="cast-info">
-                  <h2 className="actor-name">{actor.name}</h2>
-                  <p>{actor.character}</p>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+        {cast.length > 0 ? (
+          <ul className="cast-list">
+            {cast.map(actor => {
+              const imageUrl = actor.profile_path
+                ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
+                : 'https://picsum.photos/200';
+              return (
+                <li key={actor.id} className="cast-card">
+                  <img className="cast-img" src={imageUrl} alt="" />
+                  <div className="cast-info">
+                    <h2 className="actor-name">{actor.name}</h2>
+                    <p>{actor.character}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <div>no cast</div>
+        )}
       </div>
     </>
   );
 }
+
+// {
+//   reviews.length > 0 ? (
+//     reviews.map(rev => {
+//       return (
+//         <li key={rev.id} className="reviews-item">
+//           <p>author: {rev.author}</p>
+//           <p>{rev.content}</p>
+//         </li>
+//       );
+//     })
+//   ) : (
+//     <div>no reviews</div>
+//   );
+// }
+
+//   `https://image.tmdb.org/t/p/w500/${actor.profile_path}`;
+//

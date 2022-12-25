@@ -1,5 +1,5 @@
 import { getApiCast } from 'components/helpers/getApi';
-import { useParams, useLocation, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 

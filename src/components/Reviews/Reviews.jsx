@@ -15,7 +15,6 @@ export function Reviews() {
         const {
           data: { results },
         } = await getApiReviews(movieId);
-        // console.log(results);
         setReviews(results);
       } catch (error) {
         console.log(error);

@@ -1,7 +1,17 @@
-import { useParams, Outlet, Link, useLocation } from 'react-router-dom';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { getApiDetails } from 'components/helpers/getApi';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import {
+  DetailsCard,
+  DetailsImg,
+  DetailsImgBox,
+  DetailsLinkBack,
+  DetailsNavLink,
+  DetailsWrapper,
+  DetalisInfo,
+  DetalisNavigation,
+} from './MovieDetails.styled';
 
 export default function MovieDetails() {
   const { movieId } = useParams();
@@ -35,35 +45,24 @@ export default function MovieDetails() {
     <>
       <main>
         <div className="container">
-          <div className="details-card">
-            <Link className="back" to={back}>
-              Go back
-            </Link>
+          <DetailsCard>
+            <DetailsLinkBack to={back}>Go back</DetailsLinkBack>
             {isLoading && <div>.......loading</div>}
-            <div className="details-wrap">
-              <div className="details-img-box">
-                <img
-                  className="details-img"
-                  style={{ width: '150px' }}
-                  src={movieImg}
-                  alt=""
-                />
-              </div>
-              <div className="details-info">
+            <DetailsWrapper>
+              <DetailsImgBox>
+                <DetailsImg src={movieImg} alt="" />
+              </DetailsImgBox>
+              <DetalisInfo>
                 <h2>{movie.title}</h2>
                 <p>{movie.overview}</p>
-              </div>
-            </div>
-            <div className="details-nav">
-              <Link className="details-nav-link" to="cast">
-                Cast
-              </Link>
-              <Link className="details-nav-link" to="reviews">
-                Reviews
-              </Link>
-            </div>
+              </DetalisInfo>
+            </DetailsWrapper>
+            <DetalisNavigation>
+              <DetailsNavLink to="cast">Cast</DetailsNavLink>
+              <DetailsNavLink to="reviews">Reviews</DetailsNavLink>
+            </DetalisNavigation>
             <Outlet />
-          </div>
+          </DetailsCard>
         </div>
       </main>
     </>

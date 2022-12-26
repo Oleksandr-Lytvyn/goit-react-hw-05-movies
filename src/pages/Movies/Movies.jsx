@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getApiQuery } from 'components/helpers/getApi';
 import { MovieItem } from 'components/MovieItem/MovieItem';
+import { SearchForm } from './Movies.styled';
 
 export default function Movies() {
   const [movies, setMovies] = useState([]);
@@ -48,7 +49,7 @@ export default function Movies() {
   return (
     <>
       <div className="container">
-        <form onSubmit={onSubmit}>
+        <SearchForm onSubmit={onSubmit}>
           <input
             type="text"
             name="search"
@@ -58,7 +59,7 @@ export default function Movies() {
             // }}
           />
           <button type="submit">search</button>
-        </form>
+        </SearchForm>
         {isLoading && <div>.......loading</div>}
         <ul>
           {movies.map(movie => {

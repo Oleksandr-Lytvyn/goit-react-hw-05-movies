@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { getApiReviews } from 'components/helpers/getApi';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { ReviewsItem, ReviewsList } from './Reviews.styled';
 
 export function Reviews() {
   const { movieId } = useParams();
@@ -29,20 +30,20 @@ export function Reviews() {
     <section>
       <h2>reviews</h2>
       {isLoading && <div>.......loading</div>}
-      <ul className="reviews-list">
+      <ReviewsList>
         {reviews.length > 0 ? (
           reviews.map(rev => {
             return (
-              <li key={rev.id} className="reviews-item">
+              <ReviewsItem key={rev.id}>
                 <p>author: {rev.author}</p>
                 <p>{rev.content}</p>
-              </li>
+              </ReviewsItem>
             );
           })
         ) : (
           <div>no reviews</div>
         )}
-      </ul>
+      </ReviewsList>
     </section>
   );
 }

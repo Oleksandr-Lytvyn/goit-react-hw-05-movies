@@ -2,6 +2,7 @@ import { getApiCast } from 'components/helpers/getApi';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { CastActorName, CastCard, CastImage, CastList } from './Cast.styled';
 
 export function Cast() {
   const { movieId } = useParams();
@@ -32,22 +33,22 @@ export function Cast() {
       <div className="container">
         {/* <h2>Cast</h2> */}
         {cast.length > 0 ? (
-          <ul className="cast-list">
+          <CastList>
             {cast.map(actor => {
               const imageUrl = actor.profile_path
                 ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
                 : 'https://picsum.photos/200';
               return (
-                <li key={actor.id} className="cast-card">
-                  <img className="cast-img" src={imageUrl} alt="" />
+                <CastCard key={actor.id}>
+                  <CastImage src={imageUrl} alt="" />
                   <div className="cast-info">
-                    <h2 className="actor-name">{actor.name}</h2>
+                    <CastActorName>{actor.name}</CastActorName>
                     <p>{actor.character}</p>
                   </div>
-                </li>
+                </CastCard>
               );
             })}
-          </ul>
+          </CastList>
         ) : (
           <div>no cast</div>
         )}

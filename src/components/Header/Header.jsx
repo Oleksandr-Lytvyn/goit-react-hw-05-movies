@@ -1,4 +1,5 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { StyledLink, LinksNav } from './Header.styled';
 import { Suspense } from 'react';
 
 export default function Header() {
@@ -6,14 +7,12 @@ export default function Header() {
     <>
       <section className="header">
         <div className="container">
-          <nav className="header__nav">
-            <Link className="nav-link" to="/">
-              Home
-            </Link>
-            <Link className="nav-link" to="/movies">
+          <LinksNav className="header__nav">
+            <StyledLink to="/">Home</StyledLink>
+            <StyledLink className="nav-link" to="/movies">
               Movies
-            </Link>
-          </nav>
+            </StyledLink>
+          </LinksNav>
         </div>
       </section>
       <Suspense fallback={<div>Loading...</div>}>

@@ -10,6 +10,7 @@ export function Cast() {
   const [cast, setCast] = useState([]);
   const [error, setError] = useState(null);
   const [isLoadind, setIsLoading] = useState(false);
+  const [isNoResult, setIsNoResult] = useState(false);
 
   useEffect(() => {
     const fetchCast = async () => {
@@ -20,24 +21,26 @@ export function Cast() {
         } = await getApiCast(movieId);
         setIsLoading(false);
         setCast(cast);
+        cast.length < 1 && setIsNoResult(true);
       } catch (error) {
         setError(error);
       }
     };
     fetchCast();
-  }, [movieId]);
+  }, [cast.length, movieId]);
   return (
     <>
       {error && <div>{error}</div>}
       {isLoadind && <div>.......loading</div>}
+      {isNoResult && <div>no cast</div>}
       <div className="container">
         {/* <h2>Cast</h2> */}
-        {cast.length > 0 ? (
+        {cast.length > 0 && (
           <CastList>
             {cast.map(actor => {
               const imageUrl = actor.profile_path
                 ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
-                : '/src/images/no-image.jpg';
+                : 'https://upload.wikimedia.org/wikipedia/ru/a/ac/No_image_available.svg';
               return (
                 <CastCard key={actor.id}>
                   <CastImage src={imageUrl} alt="" />
@@ -49,8 +52,6 @@ export function Cast() {
               );
             })}
           </CastList>
-        ) : (
-          <div>no cast</div>
         )}
       </div>
     </>

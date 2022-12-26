@@ -31,7 +31,10 @@ export default function MovieDetails() {
       try {
         const data = await getApiDetails(movieId);
         setMovie(data);
-        setMovieImg(`https://image.tmdb.org/t/p/w500/${movie.poster_path}`);
+        const imageUrl = movie.poster_path
+          ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+          : 'https://upload.wikimedia.org/wikipedia/ru/a/ac/No_image_available.svg';
+        setMovieImg(imageUrl);
       } catch (error) {
         console.log(error);
       } finally {

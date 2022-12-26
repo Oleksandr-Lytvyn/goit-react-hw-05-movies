@@ -45,6 +45,7 @@ export default function Movies() {
     }
     setQuery(event.target.search.value);
     setSearchParams({ q: event.target.search.value });
+    event.target.reset();
   }
   return (
     <>

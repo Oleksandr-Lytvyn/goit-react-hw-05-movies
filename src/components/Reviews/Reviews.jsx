@@ -8,6 +8,7 @@ export function Reviews() {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isNoResult, setIsNoResult] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -17,6 +18,9 @@ export function Reviews() {
           data: { results },
         } = await getApiReviews(movieId);
         setReviews(results);
+        if (results < 1) {
+          setIsNoResult(true);
+        }
       } catch (error) {
         console.log(error);
       } finally {
@@ -24,14 +28,15 @@ export function Reviews() {
       }
     };
     fetchReviews();
-  }, [movieId]);
+  }, [movieId, reviews.length]);
 
   return (
     <section>
       <h2>reviews</h2>
       {isLoading && <div>.......loading</div>}
+      {isNoResult && <div>no reviews</div>}
       <ReviewsList>
-        {reviews.length > 0 ? (
+        {reviews.length > 0 &&
           reviews.map(rev => {
             return (
               <ReviewsItem key={rev.id}>
@@ -39,10 +44,7 @@ export function Reviews() {
                 <p>{rev.content}</p>
               </ReviewsItem>
             );
-          })
-        ) : (
-          <div>no reviews</div>
-        )}
+          })}
       </ReviewsList>
     </section>
   );

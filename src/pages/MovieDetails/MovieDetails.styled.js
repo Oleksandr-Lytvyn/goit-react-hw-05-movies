@@ -24,7 +24,8 @@ export const DetailsImgBox = styled.div`
   width: 150px;
 `;
 export const DetailsImg = styled.img`
-  width: 100%;
+  display: block;
+  width: 150px;
   margin-right: 20px;
 `;
 export const DetailsNavLink = styled(Link)`

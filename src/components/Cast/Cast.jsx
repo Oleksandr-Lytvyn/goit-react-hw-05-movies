@@ -37,7 +37,7 @@ export function Cast() {
             {cast.map(actor => {
               const imageUrl = actor.profile_path
                 ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
-                : 'https://picsum.photos/200';
+                : '/src/images/no-image.jpg';
               return (
                 <CastCard key={actor.id}>
                   <CastImage src={imageUrl} alt="" />
